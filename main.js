@@ -14,18 +14,16 @@ submitButton.addEventListener('click', function(evt){
   //avg per household was 911kwH per month; (divide monthly by this to get per household)
 
 
-  // annual natural gas consumption by state
+  // annual coal production by state
   $.ajax({
-    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY  + '&series_id=ELEC.CONS_TOT.NG-' + inputBox.value + '-99.A',
+    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.CLPRB.' + inputBox.value + '.A',
   }).done(function(reply){
       console.log(reply);
 
 
-      var data = {desc: '', units: '', year1: '', amt1: ''};
+      var data = {desc: '', amt1: ''};
 
       data.desc = reply.series[0].name;
-      data.units = reply.series[0].units;
-      data.year1 = reply.series[0].data[0][0];
       data.amt1 = Math.round(reply.series[0].data[0][1]);
 
       // calculate cubic feet in kwh
@@ -66,11 +64,9 @@ submitButton.addEventListener('click', function(evt){
   }).done(function(reply2){
     console.log(reply2);
 
-    var dataNGProd = {desc: '', units: '', year1: '', amt1: ''};
+    var dataNGProd = {desc: '', amt1: ''};
 
     dataNGProd.desc = reply2.series[0].name;
-    dataNGProd.units = reply2.series[0].units;
-    dataNGProd.year1 = reply2.series[0].data[0][0];
     dataNGProd.amt1 = Math.round(reply2.series[0].data[0][1]);
 
     var productionData = document.querySelector('.production-data').innerHTML;
@@ -82,19 +78,35 @@ submitButton.addEventListener('click', function(evt){
 
   }); //end .done natural gas production
 
-
-
+  // energy produced by nuclear power
   $.ajax({
-    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=ELEC.GEN.TSN-' + inputBox.value + '-99.A',
+    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.NUETB.' + inputBox.value + '.A',
   }).done(function(reply3){
     console.log(reply3);
 
-    var dataSP = {desc: '', units: '', year1: '', amt1: ''};
+    var dataNuke = {desc: '', amt1: ''};
 
-    dataSP.desc = reply3.series[0].name;
-    dataSP.units = reply3.series[0].units;
-    dataSP.year1 = reply3.series[0].data[0][0];
-    dataSP.amt1 = Math.round(reply3.series[0].data[0][1]);
+    dataNuke.desc = reply3.series[0].name;
+    dataNuke.amt1 = Math.round(reply3.series[0].data[0][1]);
+
+    var nuclearData = document.querySelector('.nuclear-data').innerHTML;
+    var template4 = Handlebars.compile(nuclearData);
+    var newHTML4 = template4(dataNuke);
+
+    var nuclearDiv = document.querySelector('.nuclear-div');
+    nuclearDiv.innerHTML = newHTML4;
+  })// end .done nuclear production
+
+ // annual renewable energy production
+  $.ajax({
+    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.REPRB.' + inputBox.value + '.A',
+  }).done(function(reply4){
+    console.log(reply4);
+
+    var dataSP = {desc: '', amt1: ''};
+
+    dataSP.desc = reply4.series[0].name;
+    dataSP.amt1 = Math.round(reply4.series[0].data[0][1]);
 
     var solarpData = document.querySelector('.solarp-data').innerHTML;
     var template3 = Handlebars.compile(solarpData);
@@ -105,12 +117,34 @@ submitButton.addEventListener('click', function(evt){
   }) //end .done solar energy production
 
 
-// annual renewable energy production in btu
+  // Total energy consumption
   $.ajax({
-    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.REPRB.' + inputBox.value + '.A',
-  }).done(function(reply4){
-    console.log(reply4);
+    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.TETCB.' + inputBox.value + '.A',
+  }).done(function(reply5){
+    console.log(reply5);
+
+    var dataTot = {desc: '', amt1: ''};
+
+    dataTot.desc = reply5.series[0].name;
+    dataTot.amt1 = Math.round(reply5.series[0].data[0][1]);
+
+    var totalData = document.querySelector('.total-data').innerHTML;
+    var template5 = Handlebars.compile(totalData);
+    var newHTML5 = template5(dataTot);
+
+    var totalDiv = document.querySelector('.total-div');
+    totalDiv.innerHTML = newHTML5;
   })
+
+
+  // annual population
+  $.ajax({
+    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.TPOPP.' + inputBox.value + '.A',
+  }).done(function(reply6){
+    console.log(reply6);
+  })
+
+
 
 
 })// end submit button event listener

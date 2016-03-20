@@ -8,7 +8,11 @@
     <title>Something with APIs</title>
   </head>
   <body>
-    <img class="fullBGRD" src="">
+    <div class="header-img">
+      <img class="fullBGRD" src="">
+    </div>
+    <br><br>
+
     <form action="">
       <!-- <select class="dropdown">
         <option class="choice" selected disabled>Choose</option>
@@ -21,15 +25,22 @@
     </form>
 
     <div class="data-container">
-<!-- consumption data -->
+
+<!-- Total Energy Consumption -->
+    <div class="total-div"></div>
+      <script class="total-data" type="text/x-handlebars-template">
+        <ul class="total-info">
+          <li><h3>{{desc}}</h3></li>
+          <li><h4>Amount used: {{amt1}}</h4></li>
+        </ul>
+      </script>
+
+<!-- Coal production data -->
     <div class="energy-div"></div>
       <script class="energy-data" type="text/x-handlebars-template">
         <ul class="energy-info">
-          <li><h2>Annual Natural Gas Consumption:</h2></li>
           <li><h3>{{desc}}</h3></li>
-          <li><h3>By {{units}}</h3></li>
-          <li><h3>Latest year: {{year1}}</h3></li>
-          <li><h3>Amount used: {{amt1}}</h3></li>
+          <li><h4>Amount used: {{amt1}}</h4></li>
         </ul>
       </script>
 
@@ -37,32 +48,35 @@
       <div class="production-div"></div>
         <script class="production-data" type="text/x-handlebars-template">
           <ul class="production-info">
-            <li><h2>Annual Natural Gas Produced:</h2></li>
             <li><h3>{{desc}}</h3></li>
-            <li><h3>By {{units}}</h3></li>
-            <li><h3>Latest year: {{year1}}</h3></li>
-            <li><h3>Amount produced: {{amt1}}</h3></li>
+            <li><h4>Amount produced: {{amt1}}</h4></li>
           </ul>
         </script>
 
-<!-- solar production data -->
+<!-- nuclear production data -->
+      <div class="nuclear-div"></div>
+        <script class="nuclear-data" type="text/x-handlebars-template">
+          <ul class="nuclear-info">
+            <li><h3>{{desc}}</h3></li>
+            <li><h4>Amount produced: {{amt1}}</h4></li>
+          </ul>
+        </script>
+
+<!-- renewables production data -->
       <div class="solarp-div"></div>
         <script class="solarp-data" type="text/x-handlebars-template">
           <ul class="solarp-info">
-            <li><h2>Annual Solar Production:</h2></li>
             <li><h3>{{desc}}</h3></li>
-            <li><h3>By {{units}}</h3></li>
-            <li><h3>Latest year: {{year1}}</h3></li>
-            <li><h3>Amount produced: {{amt1}}</h3></li>
+            <li><h4>Amount produced: {{amt1}}</h4></li>
           </ul>
         </script>
 
   </div>
 
-    <!-- <div id="map">
-      <iframe class="usframe" src="http://createaclickablemap.com/map.php?&id=46420&online=true" width="1000" height="525" style="border: none;"></iframe>
-      <script class="statemap">if (window.addEventListener){ window.addEventListener("message", function(event) { if(event.data.length >= 22) { if( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } else if (window.attachEvent){ window.attachEvent("message", function(event) { if( event.data.length >= 22) { if ( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } </script>
-    </div> -->
+  <div>
+    <!--Have a static section (ul) here with main values
+  ex: data year (2013), what a Btu stands for,    -->
+  </div>
 
     <script src="whatever.js" charset="utf-8"></script>
     <script src="apiKey.js" charset="utf-8"></script>

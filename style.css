@@ -9,8 +9,8 @@
   background-position: auto;
 }
 .data-container {
-  display: flex;
-  flex-flow: row wrap;
+  /*display: flex;
+  flex-flow: row wrap;*/
 }
 .energy-div {
   position: relative;
@@ -19,7 +19,9 @@
 
 .production-div {
   position: relative;
-  text-align: center;
+}
+.total-div, .nuclear-div {
+  position: relative;
 }
 
 .solarp-div {
