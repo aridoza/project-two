@@ -1,5 +1,56 @@
-body {
+.fullBGRD {
   display: block;
+  position: absolute;
   width: 100%;
   height: 100%;
+  /*background-image: url(http://ensia.com/wp-content/uploads/2015/03/feature_solar_reality_inline.jpg);*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: auto;
+}
+.data-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.energy-div {
+  position: relative;
+  color: purple;
+}
+
+.production-div {
+  position: relative;
+  text-align: center;
+}
+
+.solarp-div {
+  display: block;
+  position: relative;
+  bottom: 30%;
+}
+#map {
+  position: absolute;
+  left: 20%;
+  opacity: 80%;
+}
+
+.search, .submit {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.search {
+  width: 150px;
+  height: 30px;
+}
+.search:hover {
+
+}
+
+.submit {
+  width: 155px;
+  height: 30px;
+}
+.submit:hover {
+  transform:scale(1.1);
 }

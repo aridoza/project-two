@@ -8,32 +8,61 @@
     <title>Something with APIs</title>
   </head>
   <body>
-
+    <img class="fullBGRD" src="">
     <form action="">
-      <select class="dropdown">
+      <!-- <select class="dropdown">
         <option class="choice" selected disabled>Choose</option>
         <option class="choice" value="choice1">Something</option>
         <option class="choice" value="choice2">Anotherthing</option>
-      </select>
+      </select> -->
       <br><br>
-      <input type="text" class="search" name="name" value="" placeholder="Enter some somethings...">
+      <input type="text" maxlength="2" class="search" name="name" value="" placeholder="Enter a state">        <!-- found maxlength addition at: http://help.dottoro.com/ljooamek.php -->
       <button type="submit" name="button" class="submit">Submit</button>
     </form>
 
+    <div class="data-container">
+<!-- consumption data -->
     <div class="energy-div"></div>
       <script class="energy-data" type="text/x-handlebars-template">
         <ul class="energy-info">
+          <li><h2>Annual Natural Gas Consumption:</h2></li>
           <li><h3>{{desc}}</h3></li>
-          <li><h3>{{units}}</h3></li>
-          <li><h3>{{year1}}</h3></li>
-          <li><h3>{{amt1}}</h3></li>
-          <li><h3>{{year2}}</h3></li>
-          <li><h3>{{amt2}}</h3></li>
-          <li><h3>{{year3}}</h3></li>
-          <li><h3>{{amt3}}</h3></li>
+          <li><h3>By {{units}}</h3></li>
+          <li><h3>Latest year: {{year1}}</h3></li>
+          <li><h3>Amount used: {{amt1}}</h3></li>
         </ul>
       </script>
 
+<!-- natural gas production data -->
+      <div class="production-div"></div>
+        <script class="production-data" type="text/x-handlebars-template">
+          <ul class="production-info">
+            <li><h2>Annual Natural Gas Produced:</h2></li>
+            <li><h3>{{desc}}</h3></li>
+            <li><h3>By {{units}}</h3></li>
+            <li><h3>Latest year: {{year1}}</h3></li>
+            <li><h3>Amount produced: {{amt1}}</h3></li>
+          </ul>
+        </script>
+
+<!-- solar production data -->
+      <div class="solarp-div"></div>
+        <script class="solarp-data" type="text/x-handlebars-template">
+          <ul class="solarp-info">
+            <li><h2>Annual Solar Production:</h2></li>
+            <li><h3>{{desc}}</h3></li>
+            <li><h3>By {{units}}</h3></li>
+            <li><h3>Latest year: {{year1}}</h3></li>
+            <li><h3>Amount produced: {{amt1}}</h3></li>
+          </ul>
+        </script>
+
+  </div>
+
+    <!-- <div id="map">
+      <iframe class="usframe" src="http://createaclickablemap.com/map.php?&id=46420&online=true" width="1000" height="525" style="border: none;"></iframe>
+      <script class="statemap">if (window.addEventListener){ window.addEventListener("message", function(event) { if(event.data.length >= 22) { if( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } else if (window.attachEvent){ window.attachEvent("message", function(event) { if( event.data.length >= 22) { if ( event.data.substr(0, 22) == "__MM-LOCATION.REDIRECT") location = event.data.substr(22); } }, false); } </script>
+    </div> -->
 
     <script src="whatever.js" charset="utf-8"></script>
     <script src="apiKey.js" charset="utf-8"></script>
