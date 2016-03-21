@@ -2,9 +2,20 @@ window.onload = function() {
 
 var submitButton = document.querySelector('.submit');
 var inputBox = document.querySelector('.search');
+
+// var sideImage = document.querySelector('.energy-images');
+// sideImage.style.visibility = 'hidden';
+
+  // var loading = document.querySelector('.loading');
+
+
 //test out url
 submitButton.addEventListener('click', function(evt){
   evt.preventDefault();
+
+  // sideImage.style.visibility = 'visible';
+  // var loading = document.querySelector('.loading');
+  // loading.style.visibility = 'hidden';
 
   var fullBGRD = document.querySelector('.fullBGRD');
   fullBGRD.src = "http://images.techhive.com/images/article/2015/12/screen-shot-2015-12-14-at-12.12.50-pm-100633200-orig.png";
@@ -13,6 +24,8 @@ submitButton.addEventListener('click', function(evt){
   // var query;
   var contentBorder = document.querySelector('.content-container');
   contentBorder.style.border = "2px solid grey";
+
+  contentBorder.style.background = "#E0EEE0";
 
   //avg per household was 911kwH per month; (divide monthly by this to get per household)
 
@@ -166,7 +179,10 @@ submitButton.addEventListener('click', function(evt){
 
   // var pctData = {pctCoal: '', pctNat: '', pctNuke: '', pctRen: ''};
   //
-  //
+  // pctData.pctCoal = dataTot.amt1 / data.amt1;
+  // pctData.pctNat = dataTot.amt1 / dataNGProd.amt1;
+  // pctData.pctNuke = dataTot.amt1 / dataNuke.amt1;
+  // pctData.pctRen = dataTot.amt1 / dataSP.amt1;
   //
   // var percentages = document.querySelector('.pctg-data').innerHTML;
   // var template7 = Handlebars.compile(percentages);
@@ -188,9 +204,12 @@ submitButton.addEventListener('click', function(evt){
   var measDiv = document.querySelector('.measurements-div');
   measDiv.innerHTML = newHTML8;
 
-
+  measDiv.style.background = "#616161";
 
 })// end submit button event listener
+
+
+
 
 
 // $('#s04').click(function(){
