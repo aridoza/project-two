@@ -7,9 +7,12 @@ submitButton.addEventListener('click', function(evt){
   evt.preventDefault();
 
   var fullBGRD = document.querySelector('.fullBGRD');
-  fullBGRD.src = "";
-  var backgroundImg;
+  fullBGRD.src = "http://images.techhive.com/images/article/2015/12/screen-shot-2015-12-14-at-12.12.50-pm-100633200-orig.png";
+  var linkText = document.querySelector('.link-ref');
+  linkText.innerText = "Renewable energy installations";
   // var query;
+  var contentBorder = document.querySelector('.content-container');
+  contentBorder.style.border = "2px solid grey";
 
   //avg per household was 911kwH per month; (divide monthly by this to get per household)
 
@@ -40,15 +43,15 @@ submitButton.addEventListener('click', function(evt){
       var energyDiv = document.querySelector('.energy-div');
       energyDiv.innerHTML = newHTML;
 
-      if(inputBox.value === "NY"){
-        fullBGRD.src = "http://www.ssn.tv/wp-content/uploads/2014/07/NYC-1.jpg";
-      } if(inputBox.value === "CA"){
-        fullBGRD.src = "http://lateralledger.com/wp-content/uploads/2015/01/millbrae-california-attractions-top.jpg";
-      } if(inputBox.value === "TX"){
-        fullBGRD.src = "http://travelchannel.sndimg.com/content/dam/images/travel/fullset/2012/09/14/a0/texas-historic-sites-alamo.rend.tccom.616.462.jpeg";
-      } if(inputBox.value === "VT"){
-        fullBGRD.src = "http://www.tuckerhill.com/wp-content/uploads/2011/06/welcome-to-vermont-road-sign.jpg";
-      }
+      // if(inputBox.value === "NY"){
+      //   fullBGRD.src = "http://www.ssn.tv/wp-content/uploads/2014/07/NYC-1.jpg";
+      // } if(inputBox.value === "CA"){
+      //   fullBGRD.src = "http://lateralledger.com/wp-content/uploads/2015/01/millbrae-california-attractions-top.jpg";
+      // } if(inputBox.value === "TX"){
+      //   fullBGRD.src = "http://travelchannel.sndimg.com/content/dam/images/travel/fullset/2012/09/14/a0/texas-historic-sites-alamo.rend.tccom.616.462.jpeg";
+      // } if(inputBox.value === "VT"){
+      //   fullBGRD.src = "http://www.tuckerhill.com/wp-content/uploads/2011/06/welcome-to-vermont-road-sign.jpg";
+      // }
 
 
 
@@ -134,7 +137,9 @@ submitButton.addEventListener('click', function(evt){
 
     var totalDiv = document.querySelector('.total-div');
     totalDiv.innerHTML = newHTML5;
-  })
+  }) // end .done total energy consumption
+
+
 
 
   // annual population
@@ -142,8 +147,46 @@ submitButton.addEventListener('click', function(evt){
     url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.TPOPP.' + inputBox.value + '.A',
   }).done(function(reply6){
     console.log(reply6);
-  })
 
+    var dataPop = {desc: '', units: '', amt1: ''};
+
+    dataPop.desc = reply6.series[0].name;
+    dataPop.units = reply6.series[0].units;
+    dataPop.amt1 = reply6.series[0].data[0][1];
+
+    var popData = document.querySelector('.pop-data').innerHTML;
+    var template6 = Handlebars.compile(popData);
+    var newHTML6 = template6(dataPop);
+
+    var populationDiv = document.querySelector('.population-div');
+    populationDiv.innerHTML = newHTML6;
+
+  }) // end done population
+
+
+  // var pctData = {pctCoal: '', pctNat: '', pctNuke: '', pctRen: ''};
+  //
+  //
+  //
+  // var percentages = document.querySelector('.pctg-data').innerHTML;
+  // var template7 = Handlebars.compile(percentages);
+  // var newHTML7 = template7(pctData);
+  //
+  // var pctDiv = document.querySelector('.percentages-div');
+  // pctDiv.innerHTML = newHTML7;
+
+
+  var measureData = {units: '', year: ''};
+
+  measureData.units = "BTUs";
+  measureData.year = "2013";
+
+  var measData = document.querySelector('.meas-data').innerHTML;
+  var template8 = Handlebars.compile(measData);
+  var newHTML8 = template8(measureData);
+
+  var measDiv = document.querySelector('.measurements-div');
+  measDiv.innerHTML = newHTML8;
 
 
 
