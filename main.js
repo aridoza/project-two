@@ -177,6 +177,27 @@ submitButton.addEventListener('click', function(evt){
   }) // end done population
 
 
+  // household data
+  $.ajax({
+    url: 'http://api.eia.gov/series/?api_key=' + EIA_KEY + '&series_id=SEDS.TERCB.' + inputBox.value + '.A',
+  }).done(function(reply7){
+    console.log(reply7);
+
+    var hhFacts = {desc: '', units: ''};
+
+    hhFacts.desc = reply7.series[0].name;
+    hhFacts.units = reply7.series[0].data[0][1];
+
+
+    var hhData = document.querySelector('.household-data').innerHTML;
+    var template7 = Handlebars.compile(hhData);
+    var newHTML7 = template7(hhFacts);
+
+    var householdDiv = document.querySelector('.household-div');
+    householdDiv.innerHTML = newHTML7;
+
+  }) // end household data
+
   // var pctData = {pctCoal: '', pctNat: '', pctNuke: '', pctRen: ''};
   //
   // pctData.pctCoal = dataTot.amt1 / data.amt1;
